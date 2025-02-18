@@ -1,5 +1,7 @@
 export default class Snake {
-    constructor() {
+    constructor(id) {
+        this.id = id;
+        
         this.x = 0;
         this.y = 0;
         this.length = 10;
