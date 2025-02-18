@@ -11,6 +11,7 @@
 [![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+[![Join Discord](https://img.shields.io/badge/Join_Discord-7289DA?style=for-the-badge&logo=discord)](https://discord.com/invite/YOUR_INVITE_CODE)
 
 </div>
 
