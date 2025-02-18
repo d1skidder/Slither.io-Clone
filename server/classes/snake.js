@@ -4,6 +4,8 @@ export default class Snake {
         this.y = 0;
         this.length = 10;
 
+        this.dir = 0;
+
         this.segments = [];
 
         this.accelerating = false;
