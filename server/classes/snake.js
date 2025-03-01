@@ -11,6 +11,7 @@ export default class Snake {
         this.segments = [];
 
         this.accelerating = false;
+        this.maxSpeedCount = 1;
     }
 
     checkCollision() {

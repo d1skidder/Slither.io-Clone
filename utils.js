@@ -17,8 +17,17 @@ function getDistance(a, b) {
 	return Math.hypot(b[1] - a[1], b[0] - a[0]);
 }
 
+function findFromArray(thing, type, arr) {
+	for(let i = 0; i < arr.length; i++) {
+		if(arr[i][type] === thing) {
+			return arr[i];
+		}
+	}
+}
+
 export default {
 	getRandomCoord,
 	getId,
 	getDistance,
+	findFromArray,
 };

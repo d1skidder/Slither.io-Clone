@@ -4,10 +4,11 @@ export default class GameServer {
 	constructor(tickRate, maxClients, servers) {
 		this.tickRate = 1000 / tickRate;
 		this.maxClients = maxClients;
-		this.servers = JSON.parse(servers);
+		//this.servers = JSON.parse(servers) || "";
 
 		this.snakes = [];
 		this.orbs = [];
+		this.clients = [];
 
 		this.bounds = 6000;
 
@@ -19,9 +20,33 @@ export default class GameServer {
         this.snakes.push(snake);
     }
 
+	addClient(ws) {
+		this.clients.push(ws);
+	}
+
+	sendToAllClients(type, ...args) {
+		const message = [type, ...args];
+
+		for(let i = 0; i < this.clients.length; i++) {
+			this.clients[i].send(JSON.stringify(message));
+		}
+	}
+
+	sendAllButOne(ws, type, ...args) {
+		const message = [type, ...args];
+		
+		for(let i = 0; i < this.clients.length; i++) {
+			if(this.clients[i]?.snake.id === ws?.snake.id) continue;
+
+			this.clients[i].send(JSON.stringify(message));
+		}
+	}
+
 	updateSnakes() {
 		// update snakes positions
 		for (const snake of this.snakes) {
+
+			console.log("debug", snake.maxSpeedCount, snake.dir, snake.accelerating)
 			snake.x += 60 * snake.maxSpeedCount * Math.cos(snake.dir);
 			snake.y += 60 * snake.maxSpeedCount * Math.sin(snake.dir);
 
@@ -40,6 +65,8 @@ export default class GameServer {
             console.log(snake.x, snake.y)
 		}
         console.log(this.snakes)
+
+		this.sendToAllClients("us", this.clients.flatMap(client => [client.snake.id, client.snake.x, client.snake.y]));
 	}
 
 	checkSnakeCollisions() {}
